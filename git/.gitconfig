@@ -1,5 +1,7 @@
 [alias]
     co = checkout
+    pro = pull --rebase origin
+    po = push origin
 [user]
     name = Olufunmilade Oshodi
     email = olufunmilade.oshodi@andela.com
