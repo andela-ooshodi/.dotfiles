@@ -83,46 +83,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# custom configurations
-export PATH="$HOME/.bin:$PATH"
-
-# virtualenv wrapper
-export WORKON_HOME=~/Envs
-source /usr/local/bin/virtualenvwrapper.sh
-
-# To access rabbitmq commands
-PATH=$PATH:/usr/local/sbin 
-
-# postgres
-export PATH=$PATH:/Library/PostgreSQL/9.5/bin/pg_config
-export PATH=$PATH:/usr/local/Cellar/postgresql/9.5.0/bin/pg_config
-
-# setting up aliases
-alias m="python manage.py"
-alias t="python manage.py test -s"
-alias tf="REUSE_DB=1 python manage.py test -s"
-
-# autoenv
-# The use_env call below is a reusable command to activate/create a new Python
-# virtualenv, requiring only a single declarative line of code in your .env files.
-# It only performs an action if the requested virtualenv is not the current one.
-use_env() {
-    typeset venv
-    venv="$1"
-    if [[ "${VIRTUAL_ENV:t}" != "$venv" ]]; then
-        if workon | grep -q "$venv"; then
-            workon "$venv"
-        else
-            echo -n "Create virtualenv $venv now? (Yn) "
-            read answer
-            if [[ "$answer" == "Y" ]]; then
-                mkvirtualenv "$venv"
-            fi
-        fi
-    fi
-}
-
-source /usr/local/opt/autoenv/activate.sh
-
-# export psql to PATH
-export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
+# export all neccessary paths needed in the env from env.sh
+source $PWD/env.sh

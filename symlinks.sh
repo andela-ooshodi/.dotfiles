@@ -8,7 +8,6 @@ function syslink () {
     ln -sv "$PWD/git/.gitconfig" ~
     echo "creating symbolic link for zsh config"
     ln -sv "$PWD/zsh/.zshrc" ~
-    ln -sv "$PWD/zsh/.zprofile" ~
     return
 }
 
@@ -17,9 +16,9 @@ echo "Running this file would create a symbolic links for the following files"
 echo ".bash_profile"
 echo ".gitconfig"
 echo ".zshrc"
-echo ".zprofile"
 
-echo "The above configuration files would be deleted and replaced with the equivalent from this repo"
+echo "The above configuration files would be deleted from your system and replaced with the equivalent from this repo"
+echo "Please check the file configuration and ensure you understand what is going on"
 echo "Do you wish to continue? Y/N"
 read choice
 
@@ -32,8 +31,6 @@ if [[ $choice =~ $rgx ]]; then
     rm ~/.gitconfig
     echo "removing .zshrc"
     rm ~/.zshrc
-    echo "removing .zprofile"
-    rm ~/.zprofile
 
     # call symlink function
     syslink
